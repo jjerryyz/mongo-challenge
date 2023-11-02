@@ -1,10 +1,12 @@
 /**
-  6 - Add a field to a document
+  6.2 - Add a field to a document, (mergeObjects version)
   ---
 
   ### Question 
 
-  添加一个字段到一个文档中
+  添加 cost 到 items 数组中的每个文档中，cost = unitPrice * qty
+
+  使用  $map 和 $mergeObjects 简化合并流程
 
   ### Expected
  
@@ -53,5 +55,7 @@ db.test.insertOne({
 
 /** start here */
 
+db.test.aggregate([
+])
 
 

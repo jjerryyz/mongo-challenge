@@ -1,8 +1,8 @@
 
-/** 
- * 1 - for-each loop  upper transform
- */
-db.test.aggregate([
+### 1 - for-each loop  upper transform
+
+```js
+const pipeline = [
   {
     $set: {
       'products': {
@@ -14,16 +14,14 @@ db.test.aggregate([
       }
     }
   }
-])
+]
+
+```
 
 
+ ### 2 - for-each loop sum up
 
-
-/** 
- * 2 - for-each loop sum up
- */
-db.orders.insertOne(order);
-
+```js
 var pipeline = [
   {
     "$set": {
@@ -39,14 +37,16 @@ var pipeline = [
     }
   }
 ];
-
-db.orders.aggregate(pipeline);
+```
 
 
 
 /**
- * 3 - first index in array
+ * 
  */
+ ### 3 - first index in array
+
+ ```js
 var pipeline = [
   {
     "$set": {
@@ -85,15 +85,12 @@ var pipeline = [
     }
   }
 ];
+ 
+ ```
 
-db.buildings.aggregate(pipeline);
+ ### 4 - first element in array
 
-
-
-
-/**
- * 4 - first element in array
- */
+ ```js
 var pipeline = [
   {
     "$set": {
@@ -114,12 +111,13 @@ var pipeline = [
     }
   }
 ];
+ 
+ ```
 
-db.buildings.aggregate(pipeline);
+ ### 5.1 -  reduce
 
-/**
- * 5 -  reduce
- */
+
+ ```js
 var pipeline = [
   {
     "$set": {
@@ -138,15 +136,49 @@ var pipeline = [
     }
   }
 ];
+ ```
 
-db.deviceReadings.aggregate(pipeline);
+`$concatArrays` 拼接数组；
+
+`$$value`: `$reduce` 中表示累积的数据;
+
+`$$this`: `$reduce` 中表示当前的数据;
+
+### 5.2  - reduce 2
+
+```js
+const pipeline = [
+  {
+    $set: {
+      deviceReadings: {
+        $reduce: {
+          input: '$readings',
+          initialValue: [],
+          in: {
+            $concatArrays: [
+              '$$value',
+              {
+                $cond: {
+                  if: { $gte: ['$$this', 0] },
+                  then: [{
+                    $concat: ['$device', ':', { $toString: '$$this' }]
+                  }],
+                  else: []
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+]
+```
+
+ ### 6.1 - add field to array
 
 
-
-
-/**
- * 6 - add field to array
- */
+ ```js
 var pipeline = [
   {
     "$set": {
@@ -165,13 +197,62 @@ var pipeline = [
     }
   }
 ];
+ ```
 
-db.orders.aggregate(pipeline);
+### 6.2 - add field to array (mergeObject version)
+
+ 使用 `$mergeObjects` 简化合并过程
+
+ ```js
+ var pipeline = [
+  {"$set": {
+    "items": {
+      "$map": {
+        "input": "$items",
+        "as": "item",
+        "in": {
+          "$mergeObjects": [
+            "$$item",            
+            {"cost": {"$multiply": ["$$item.unitPrice", "$$item.qty"]}},
+          ]
+        }
+      }
+    }
+  }}
+];
+ ```
 
 
-/**
- * 7 - map array
- */
+ ### 6.3 - 
+
+ ```js
+const pipeline = {
+    $set: {
+      items: {
+        $map: {
+          input: '$items',
+          as: 'item',
+          in: {
+            $arrayToObject: {
+              $concatArrays: [
+                { $objectToArray: '$$item' },
+                [{
+                  k: { $concat: ['costFor', '$$item.product'] },
+                  v: { $multiply: ['$$item.unitPrice', '$$item.qty'] }
+                }]
+              ]
+            }
+          }
+        }
+      }
+    }
+  } 
+ ```
+
+ ### 7 - generate schema
+
+
+ ```js
 var pipeline = [
   {
     "$project": {
@@ -189,5 +270,38 @@ var pipeline = [
     }
   }
 ];
+ 
+ ```
 
-db.customers.aggregate(pipeline);
+### 7.2 generate schema
+
+```js
+var pipeline = [
+  {"$project": {
+    "_id": 0,
+    "schema": {
+      "$map": {
+        "input": {"$objectToArray": "$$ROOT"},
+        "as": "field",
+        "in": {
+          "fieldname": "$$field.k",
+          "type": {"$type": "$$field.v"},          
+        }
+      }
+    }
+  }},
+  
+  {"$unwind": "$schema"},
+
+  {"$group": {
+    "_id": "$schema.fieldname",
+    "types": {"$addToSet": "$schema.type"},
+  }},
+  
+  {"$set": {
+    "fieldname": "$_id",
+    "_id": "$$REMOVE",
+  }},
+];
+
+```

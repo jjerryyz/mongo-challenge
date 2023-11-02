@@ -1,10 +1,10 @@
 /**
-  7 - Rudimentary Schema Reflection Using Arrays
+  7.1 - generate schema 
   ---
 
   ### Question 
 
-  使用数组的基本模式映射
+  生成数据的 schema
 
   ### Expected
  
@@ -69,5 +69,6 @@ db.test.insertMany([
 
 /** start here */
 
-
+db.test.aggregate([
+])
 
