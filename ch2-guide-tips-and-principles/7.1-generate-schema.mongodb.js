@@ -6,36 +6,10 @@
 
   generate schema for the following documents
 
-  ### Expected
- 
-  ```js
- {
-    schema: [
-      {fieldname: '_id', type: 'objectId'},
-      {fieldname: 'email', type: 'string'},
-      {fieldname: 'dateOfBirth', type: 'date'},
-      {fieldname: 'accNnumber', type: 'int'},
-      {fieldname: 'balance', type: 'decimal'},
-      {fieldname: 'address', type: 'object'},
-      {fieldname: 'telNums', type: 'array'},
-      {fieldname: 'optedOutOfMarketing', type: 'bool'}
-    ]
-  },
-  {
-    schema: [
-      {fieldname: '_id', type: 'objectId'},
-      {fieldname: 'email', type: 'string'},
-      {fieldname: 'dateOfBirth', type: 'date'},
-      {fieldname: 'accNnumber', type: 'int'},
-      {fieldname: 'balance', type: 'decimal'},
-      {fieldname: 'telNums', type: 'string'},
-      {fieldname: 'contactPrefernece', type: 'string'}
-    ]
-}
  */
 
 
-db = db.getSiblingDB('challenge');
+db = db.getSiblingDB('book-guide-tips-and-principles');
 
 db.dropDatabase();
 
@@ -72,3 +46,35 @@ db.test.insertMany([
 db.test.aggregate([
 ])
 
+
+/**
+ * Expected
+ 
+  ```js
+  [{
+      schema: [
+        {fieldname: '_id', type: 'objectId'},
+        {fieldname: 'email', type: 'string'},
+        {fieldname: 'dateOfBirth', type: 'date'},
+        {fieldname: 'accNnumber', type: 'int'},
+        {fieldname: 'balance', type: 'decimal'},
+        {fieldname: 'address', type: 'object'},
+        {fieldname: 'telNums', type: 'array'},
+        {fieldname: 'optedOutOfMarketing', type: 'bool'}
+      ]
+    },
+    {
+      schema: [
+        {fieldname: '_id', type: 'objectId'},
+        {fieldname: 'email', type: 'string'},
+        {fieldname: 'dateOfBirth', type: 'date'},
+        {fieldname: 'accNnumber', type: 'int'},
+        {fieldname: 'balance', type: 'decimal'},
+        {fieldname: 'telNums', type: 'string'},
+        {fieldname: 'contactPrefernece', type: 'string'}
+      ]
+  }
+]
+```
+
+ */

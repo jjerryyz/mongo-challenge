@@ -5,21 +5,9 @@
   ### Question 
 
   using map compute summary
-
-  ### Expected
  
-  ```js
- [
-    {
-      orderId: 'AB12345',
-      products: [ 'Laptop', 'Kettle', 'Phone', 'Microwave' ],
-      productList: 'Laptop; Kettle; Phone; Microwave; '
-    }
-  ]
-  ```
-}
  */
-db = db.getSiblingDB('challenge');
+db = db.getSiblingDB('book-guide-tips-and-principles');
 
 db.dropDatabase();
 
@@ -30,4 +18,20 @@ db.test.insertMany([{
 
 /**
  * start here 
+ */
+
+
+/**
+ * Expected
+ * 
+  ```js
+ [
+    {
+      orderId: 'AB12345',
+      products: [ 'Laptop', 'Kettle', 'Phone', 'Microwave' ],
+      productList: 'Laptop; Kettle; Phone; Microwave; '
+    }
+  ]
+  ```
+ 
  */

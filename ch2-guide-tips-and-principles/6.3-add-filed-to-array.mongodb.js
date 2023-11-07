@@ -8,31 +8,10 @@
 
   ※ cost field name is different for each item 
 
-  ### Expected
- 
-  ```js
- {
-  custid: 'jdoe@acme.com',
-  items: [
-    {
-      product: 'WizzyWidget',
-      unitPrice: 25.99,
-      qty: 8,
-      costForWizzWidget: 187.128
-    },
-    {
-      product: 'HighEndGizmo',
-      unitPrice: 33.24,
-      qty: 3,
-      costForHighEndGizmo: 99.72
-    }
-  ]
-  ```
-}
  */
 
 
-db = db.getSiblingDB('challenge');
+db = db.getSiblingDB('book-guide-tips-and-principles');
 
 db.dropDatabase();
 
@@ -59,3 +38,25 @@ db.test.aggregate([
 ])
 
 
+/**
+ * Expected
+ 
+  ```js
+ {
+  custid: 'jdoe@acme.com',
+  items: [
+    {
+      product: 'WizzyWidget',
+      unitPrice: 25.99,
+      qty: 8,
+      costForWizzWidget: 187.128
+    },
+    {
+      product: 'HighEndGizmo',
+      unitPrice: 33.24,
+      qty: 3,
+      costForHighEndGizmo: 99.72
+    }
+  ]
+  ```
+ */

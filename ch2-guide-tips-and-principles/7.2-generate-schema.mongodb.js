@@ -6,30 +6,12 @@
 
   generate schema for the following documents, merge same type
 
-  ### Expected
- 
-  ```js
- {
-    schema: [
-    {fieldname: '_id', types: ['objectId']},
-    {fieldname: 'address', types: ['object']},
-    {fieldname: 'email', types: ['string']},
-    {fieldname: 'telNums', types: ['string', 'array']},
-    {fieldname: 'contactPrefernece', types: ['string']},
-    {fieldname: 'accNnumber', types: ['int']},
-    {fieldname: 'balance', types: ['decimal']},
-    {fieldname: 'dateOfBirth', types: ['date']},
-    {fieldname: 'optedOutOfMarketing', types: ['bool']}
-    ]
-  }
-  ```
 */
 
 
-db = db.getSiblingDB('challenge');
+db = db.getSiblingDB('book-guide-tips-and-principles');
 
 db.dropDatabase();
-
 
 db.test.insertMany([
   {
@@ -60,21 +42,23 @@ db.test.insertMany([
 
 /** start here */
 
-db.test.aggregate([
-  {
-    "$project": {
-      "_id": 0,
-      "schema": {
-        "$map": {
-          "input": { "$objectToArray": "$$ROOT" },
-          "as": "field",
-          "in": {
-            "fieldname": "$$field.k",
-            "type": { "$type": "$$field.v" },
-          }
-        }
-      }
-    },
-  }
-])
 
+/**
+ * Expected
+ 
+  ```js
+ {
+    schema: [
+    {fieldname: '_id', types: ['objectId']},
+    {fieldname: 'address', types: ['object']},
+    {fieldname: 'email', types: ['string']},
+    {fieldname: 'telNums', types: ['string', 'array']},
+    {fieldname: 'contactPrefernece', types: ['string']},
+    {fieldname: 'accNnumber', types: ['int']},
+    {fieldname: 'balance', types: ['decimal']},
+    {fieldname: 'dateOfBirth', types: ['date']},
+    {fieldname: 'optedOutOfMarketing', types: ['bool']}
+    ]
+  }
+  ```
+ */

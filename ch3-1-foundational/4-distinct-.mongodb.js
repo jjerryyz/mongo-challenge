@@ -10,27 +10,12 @@
   
   The query result should be an alphabetically sorted list of unique languages that a developer can subsequently use to populate a list of values in a user interface's "drop-down" widget.
 
-  ### Expected
- 
-  ```js
-[
-  {language: 'English'},
-  {language: 'French'},
-  {language: 'Gaelic'},
-  {language: 'German'},
-  {language: 'Italian'},
-  {language: 'Spanish'},
-  {language: 'Welsh'}
-]
-
-  ```
-}
  */
 
 
-db = db.getSiblingDB('challenge');
+db = db.getSiblingDB('book-foundational');
 
-db.test.drop()
+db.dropDatabase()
 
 // Create index for an orders collection
 // Insert 4 records into the orders collection each with 1+ product items
@@ -93,3 +78,22 @@ db.test.insertMany([
 
 
 /** start here */
+
+
+
+/**
+ * Expected
+ 
+  ```js
+[
+  {language: 'English'},
+  {language: 'French'},
+  {language: 'Gaelic'},
+  {language: 'German'},
+  {language: 'Italian'},
+  {language: 'Spanish'},
+  {language: 'Welsh'}
+]
+
+  ```
+ */

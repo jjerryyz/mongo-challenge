@@ -10,44 +10,12 @@
   
   The source data is a list of shop orders, where each order contains the set of products purchased as part of the order.
 
-  ### Expected
- 
-  ```js
-[
-  {
-    product_id: 'pqr88223',
-    product: 'Morphy Richardds Food Mixer',
-    total_value: NumberDecimal('431.43'),
-    quantity: 1
-  },
-  {
-    product_id: 'abc12345',
-    product: 'Asus Laptop',
-    total_value: NumberDecimal('861.42'),
-    quantity: 2
-  },
-  {
-    product_id: 'def45678',
-    product: 'Karcher Hose Set',
-    total_value: NumberDecimal('67.34'),
-    quantity: 3
-  },
-  {
-    product_id: 'xyz11228',
-    product: 'Russell Hobbs Chrome Kettle',
-    total_value: NumberDecimal('15.76'),
-    quantity: 1
-  }
-]
-
-  ```
-}
  */
 
 
-db = db.getSiblingDB('challenge');
+db = db.getSiblingDB('book-foundational');
 
-db.test.drop()
+db.dropDatabase()
 
 // Create index for an orders collection
 // Insert 4 records into the orders collection each with 1+ product items
@@ -116,3 +84,39 @@ db.test.insertMany([
 
 
 /** start here */
+
+
+
+/**
+ * Expected
+ 
+  ```js
+[
+  {
+    product_id: 'pqr88223',
+    product: 'Morphy Richardds Food Mixer',
+    total_value: NumberDecimal('431.43'),
+    quantity: 1
+  },
+  {
+    product_id: 'abc12345',
+    product: 'Asus Laptop',
+    total_value: NumberDecimal('861.42'),
+    quantity: 2
+  },
+  {
+    product_id: 'def45678',
+    product: 'Karcher Hose Set',
+    total_value: NumberDecimal('67.34'),
+    quantity: 3
+  },
+  {
+    product_id: 'xyz11228',
+    product: 'Russell Hobbs Chrome Kettle',
+    total_value: NumberDecimal('15.76'),
+    quantity: 1
+  }
+]
+
+  ```
+ */

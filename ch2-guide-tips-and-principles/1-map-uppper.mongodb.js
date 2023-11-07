@@ -6,8 +6,22 @@
 
   simple map 
 
-  ### Expected
- 
+ */
+
+db = db.getSiblingDB('book-guide-tips-and-principles');
+
+db.dropDatabase();
+
+db.test.insertMany([{
+  "orderId": "AB12345",
+  "products": ["Laptop", "Kettle", "Phone", "Microwave"]
+}])
+
+
+/** start here */
+
+/**
+ * Expected
   ```js
  [
     {
@@ -24,17 +38,5 @@
     }
   ]
   ```
-}
+ 
  */
-
-db = db.getSiblingDB('challenge');
-
-db.dropDatabase();
-
-db.test.insertMany([{
-  "orderId": "AB12345",
-  "products": ["Laptop", "Kettle", "Phone", "Microwave"]
-}])
-
-
-/** start here */

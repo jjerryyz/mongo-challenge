@@ -39,7 +39,7 @@
  */
 
 
-db = db.getSiblingDB('challenge');
+db = db.getSiblingDB('book-one-to-one');
 db.dropDatabase();
 
 // Insert 6 records into the products collection
