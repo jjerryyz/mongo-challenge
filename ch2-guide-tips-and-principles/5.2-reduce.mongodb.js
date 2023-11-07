@@ -1,11 +1,13 @@
 
 /**
-  5.1 - Reproducing $map Behavior Using $reduce 
+  5.2 - reduce 2 
   ---
 
   ### Question 
 
-  simple reduce example
+  using $reduce output the following result
+
+  ※ filter out readings less than 0
 
   ### Expected
  
@@ -13,8 +15,8 @@
  [
     {
       device: 'A1',
-      readings: [ 27, 282, 38, -1, 187 ],
-      deviceReadings: [ 'A1:27', 'A1:282', 'A1:38', 'A1:-1', 'A1:187' ]
+      readings: [ 27, 282, 38, 187 ],
+      deviceReadings: [ 'A1:27', 'A1:282', 'A1:38', 'A1:187' ]
     }
   ]
   ```
@@ -23,7 +25,7 @@
 
 db = db.getSiblingDB('challenge');
 
-db.test.drop();
+db.dropDatabase();
 
 db.test.insertOne({
   "device": "A1",
@@ -33,4 +35,5 @@ db.test.insertOne({
 
 /** start here */
 
-db.test.aggregate([])
+db.test.aggregate([
+])

@@ -39,7 +39,7 @@
 
 db = db.getSiblingDB('challenge');
 
-db.test.drop();
+db.dropDatabase();
 
 // Create an index for a persons collection
 db.test.createIndex({ "vocation": 1, "dateofbirth": 1 });

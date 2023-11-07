@@ -30,7 +30,7 @@
 
 db = db.getSiblingDB('challenge');
 
-db.test.drop();
+db.dropDatabase();
 
 db.test.insertOne({
   "building": "WestAnnex-1",

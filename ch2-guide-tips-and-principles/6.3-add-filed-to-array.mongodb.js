@@ -1,12 +1,12 @@
 /**
-  6.2 - Add a field to a document, (mergeObjects version)
+  6.3 - Add a field to a document, (mergeObjects version)
   ---
 
   ### Question 
 
   add cost to each item in items array, cost = unitPrice * qty
 
-  using $map and $mergeObjects to simplify merge process
+  ※ cost field name is different for each item 
 
   ### Expected
  
@@ -18,13 +18,13 @@
       product: 'WizzyWidget',
       unitPrice: 25.99,
       qty: 8,
-      cost: 187.128
+      costForWizzWidget: 187.128
     },
     {
       product: 'HighEndGizmo',
       unitPrice: 33.24,
       qty: 3,
-      cost: 99.72
+      costForHighEndGizmo: 99.72
     }
   ]
   ```
@@ -34,7 +34,7 @@
 
 db = db.getSiblingDB('challenge');
 
-db.test.drop();
+db.dropDatabase();
 
 
 db.test.insertOne({

@@ -21,7 +21,7 @@
  */
 db = db.getSiblingDB('challenge');
 
-db.test.drop();
+db.dropDatabase();
 
 db.test.insertMany([{
   "orderId": "AB12345",
