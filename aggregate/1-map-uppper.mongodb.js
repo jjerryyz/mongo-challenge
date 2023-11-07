@@ -4,7 +4,7 @@
 
   ### Question 
 
-  对每一项进行 Upper 操作
+  simple map 
 
   ### Expected
  

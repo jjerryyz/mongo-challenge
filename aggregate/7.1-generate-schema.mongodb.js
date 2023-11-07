@@ -4,7 +4,7 @@
 
   ### Question 
 
-  生成数据的 schema
+  generate schema for the following documents
 
   ### Expected
  

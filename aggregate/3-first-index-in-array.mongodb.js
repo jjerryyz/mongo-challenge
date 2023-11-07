@@ -5,7 +5,7 @@
 
   ### Question 
 
-  找到数组中元素的索引
+  find the first room that is large enough 60 
 
   ### Expected
  

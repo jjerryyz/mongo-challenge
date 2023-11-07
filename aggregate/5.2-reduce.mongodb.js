@@ -5,9 +5,9 @@
 
   ### Question 
 
-  使用 $reduce 输出下面结果
+  using $reduce output the following result
 
-  ※ 需要过滤 reading 小于 0 的项
+  ※ filter out readings less than 0
 
   ### Expected
  

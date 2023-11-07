@@ -4,7 +4,7 @@
 
   ### Question 
 
-  生成数据的 schema，合并相同的字段
+  generate schema for the following documents, merge same type
 
   ### Expected
  

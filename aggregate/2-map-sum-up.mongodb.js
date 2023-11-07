@@ -4,7 +4,7 @@
 
   ### Question 
 
-  对每一项进行 总合计算
+  using map compute summary
 
   ### Expected
  

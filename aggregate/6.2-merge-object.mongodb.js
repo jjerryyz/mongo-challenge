@@ -4,9 +4,9 @@
 
   ### Question 
 
-  添加 cost 到 items 数组中的每个文档中，cost = unitPrice * qty
+  add cost to each item in items array, cost = unitPrice * qty
 
-  使用  $map 和 $mergeObjects 简化合并流程
+  using $map and $mergeObjects to simplify merge process
 
   ### Expected
  

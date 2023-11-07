@@ -4,9 +4,9 @@
 
   ### Question 
 
-  添加 cost 到 items 数组中的每个文档中，cost = unitPrice * qty
+  add cost to each item in items array, cost = unitPrice * qty
 
-  注意：cost 属性名称不是固定的
+  ※ cost field name is different for each item 
 
   ### Expected
  

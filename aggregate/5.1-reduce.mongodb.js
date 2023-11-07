@@ -5,7 +5,7 @@
 
   ### Question 
 
-  使用 reduce 重现 map 的行为
+  simple reduce example
 
   ### Expected
  
