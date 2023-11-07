@@ -28,7 +28,7 @@
  */
 
 
-use('challenge')
+db = db.getSiblingDB('challenge');
 
 db.test.drop();
 
