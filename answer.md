@@ -50,24 +50,24 @@ var pipeline = [
  ```js
 var pipeline = [
   {
-    "$set": {
-      "firstLargeEnoughRoomArrayIndex": {
-        "$reduce": {
-          "input": { "$range": [0, { "$size": "$room_sizes" }] },
-          "initialValue": -1,
-          "in": {
-            "$cond": {
-              "if": {
-                "$and": [
+    $set: {
+      firstLargeEnoughRoomArrayIndex: {
+        $reduce: {
+          input: { $range: [0, { $size: "$room_sizes" }] },
+          initialValue: -1,
+          in: {
+            $cond: {
+              if: {
+                $and: [
                   // IF ALREADY FOUND DON'T CONSIDER SUBSEQUENT ELEMENTS
-                  { "$lt": ["$$value", 0] },
+                  { $lt: ["$$value", 0] },
                   // IF WIDTH x LENGTH > 60
                   {
-                    "$gt": [
+                    $gt: [
                       {
-                        "$multiply": [
-                          { "$getField": { "input": { "$arrayElemAt": ["$room_sizes", "$$this"] }, "field": "width" } },
-                          { "$getField": { "input": { "$arrayElemAt": ["$room_sizes", "$$this"] }, "field": "length" } },
+                        $multiply: [
+                          { $getField: { input: { $arrayElemAt: ['$room_sizes', "$$this"] }, field: "width" } },
+                          { $getField: { input: { $arrayElemAt: ['$room_sizes', "$$this"] }, field: "length" } },
                         ]
                       },
                       60
@@ -76,9 +76,9 @@ var pipeline = [
                 ]
               },
               // IF ROOM SIZE IS BIG ENOUGH CAPTURE ITS ARRAY POSITION
-              "then": "$$this",
+              then: "$$this",
               // IF ROOM SIZE NOT BIG ENOUGH RETAIN EXISTING VALUE (-1)
-              "else": "$$value"
+              else: "$$value"
             }
           }
         }
